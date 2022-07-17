@@ -1,17 +1,20 @@
-import os, sys, inspect
-from qtpy.QtWidgets import QApplication
+import sys
+from PyQt6.QtWidgets import QApplication, QWidget
 
-from nodeeditor.utils import loadStylesheet
-from nodeeditor.node_editor_window import NodeEditorWindow
+
+def main():
+
+    app = QApplication(sys.argv)
+
+    w = QWidget()
+    w.resize(250, 200)
+    w.move(300, 300)
+
+    w.setWindowTitle('Simple')
+    w.show()
+
+    sys.exit(app.exec())
 
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-
-    wnd = NodeEditorWindow()
-    wnd.nodeeditor.addNodes()
-    module_path = os.path.dirname( inspect.getfile(wnd.__class__) )
-
-    loadStylesheet( os.path.join( module_path, 'qss/nodestyle.qss') )
-
-    sys.exit(app.exec_())
+    main()
